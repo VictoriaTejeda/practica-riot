@@ -1,0 +1,56 @@
+<todo-component>
+  <h3 class="title_todo">{ props.title }</h3>
+  <img scr="pin.png" alt="pin"/>
+  <ul>
+    <li each={ item in state.items } class="todo" hidden={item.hidden}>
+      <label class={ item.done ? 'completed' : null }>
+        <input
+          class="check"  
+          type="checkbox"
+          checked={ item.done }
+          onclick={ () => toggle(item) } />
+        { item.title }
+      </label>
+    </li>
+  </ul>
+
+  <form onsubmit={ add } style="display: flex">
+    <input onkeyup={ edit } value={ state.text } />
+    <button disabled={ !state.text }>
+      Agregar #{ state.items.length + 1 }
+    </button>
+  </form>
+
+   <script>
+    export default {
+      onBeforeMount(props, state) {
+        this.state = {
+          items: props.items,
+          text: ''
+        }
+      },
+      edit(e) {
+        this.update({
+          text: e.target.value
+        })
+      },
+      add(e) {
+        e.preventDefault()
+
+        if (this.state.text) {
+          this.update({
+            items: [
+              ...this.state.items,
+              {title: this.state.text}
+            ],
+            text: ''
+          })
+        }
+      },
+      toggle(item) {
+        item.done = !item.done
+        this.update()
+      }
+    }
+  </script>
+</todo-component>

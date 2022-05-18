@@ -1,0 +1,22 @@
+<my-component style="background: { state.color }" >
+  <h3>Paleta de color</h3>
+  <p>{ props.message }</p>
+  <color-component value={ state.color } onchange={ onChange } ></color-component>
+  <p> El color es: { state.color }</p>
+
+  <script>
+    export default {
+      state: {
+        color: '',
+      },
+      onChange(event) {
+        this.update({
+          color: event.target.value
+        })
+      },
+    }
+  </script>
+</my-component>
+
+
+

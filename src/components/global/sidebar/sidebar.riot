@@ -1,0 +1,50 @@
+<sidebar>
+  <div class="container-timer">
+    <div class="row">
+      <h3>Temporizador</h3>
+    </div>
+    <div if={state.showUser} class="timer">
+      <timer name={ state.time }/>
+      <button onclick={stopTime} class="stop">Detener</button>
+    </div>
+
+    <div class="row">
+      <button onclick={toggleTime} hidden={state.hidden} >Comenzar</button>
+    </div>
+  </div>
+
+  <script>
+    import Timer from '../../includes/timer/timer.riot'
+
+    export default {
+      components: {
+        Timer
+      },
+      state: {
+        time: '0',
+        hidden: false,
+        showUser: false
+      },
+      
+       tick() {
+        this.update({ time: ++this.state.time })
+      },
+      toggleTime() {
+        this.update({
+          hidden:!this.state.hidden,
+          showUser: !this.state.showUser
+        })
+        this.timer = setInterval(this.tick, 1000)
+      },
+    stopTime(){
+      this.update({
+           time: '0',
+           hidden:!this.state.hidden,
+          showUser: !this.state.showUser
+        })
+      clearInterval(this.timer)
+      console.log("alto")
+    }
+    }
+  </script>
+</sidebar

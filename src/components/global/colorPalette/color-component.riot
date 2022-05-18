@@ -1,0 +1,34 @@
+<color-component>
+ <div class= "container_colors">
+    <div each={color in state.colors}
+         style="background: {color}" 
+         class={ color === props.value ? 'selected' : ''}
+         id="colors"
+         onclick={ ()=> onClick(color)}>
+    </div> 
+ </div>
+    <script>
+        export default {
+            state:{
+                colors:[
+                 '#ffa983;',
+                 '#ffd067',
+                 '#004a8a',
+                 '#00937f',
+                 '#72da82'
+                ],
+            },
+
+            onBeforeMount(props){
+                this.root.value = props.value  
+            },
+
+            onClick(color){
+                console.log(color)
+                this.root.value = color
+                this.root.dispatchEvent(new Event('change'))
+                
+            }
+        }    
+    </script>
+</color-component>
