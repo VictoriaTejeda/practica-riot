@@ -7,23 +7,26 @@
       <timer name={ state.time }/>
       <button onclick={stopTime} class="stop">Detener</button>
     </div>
-
     <div class="row">
       <button onclick={toggleTime} hidden={state.hidden} >Comenzar</button>
     </div>
   </div>
+    <modal name={state.timeFinaly} display={state.display} />
 
   <script>
     import Timer from '../../includes/timer/timer.riot'
-
+    import Modal from '../../includes/timer/modal.riot'
     export default {
       components: {
-        Timer
+        Timer,
+        Modal
       },
       state: {
-        time: '0',
+        time: 0,
         hidden: false,
-        showUser: false
+        display:'none',
+        showUser: false, 
+        timeFinaly:0
       },
       
        tick() {
@@ -36,15 +39,18 @@
         })
         this.timer = setInterval(this.tick, 1000)
       },
+    
     stopTime(){
+      let prueba= document.getElementById("modalito")
+     prueba.style.display = "block"
       this.update({
-           time: '0',
+           time: 0,
            hidden:!this.state.hidden,
-          showUser: !this.state.showUser
+           showUser: !this.state.showUser,
+           timeFinaly:this.state.time
         })
       clearInterval(this.timer)
-      console.log("alto")
-    }
+    },
     }
   </script>
 </sidebar

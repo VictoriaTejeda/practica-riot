@@ -127,7 +127,7 @@ label {
   border-radius: 1vh;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
     rgba(0, 0, 0, 0.22) 0px 15px 12px;
-    margin-left: 5vh;
+  margin-left: 5vh;
 }
 .row {
   display: flex;
@@ -139,7 +139,7 @@ label {
 .stop {
   background-color: #515b5c;
 }
-.sideba{
+.sideba {
   display: flex;
   align-items: center;
   align-content: center;
